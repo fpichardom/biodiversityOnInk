@@ -1,0 +1,245 @@
+[
+    {
+        "taxonAuthor": "Becc. ex Broadway",
+        "family": "Arecaceae",
+        "genus": "Euterpe",
+        "species": "broadwayi",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "Wallace",
+        "family": "Arecaceae",
+        "genus": "Euterpe",
+        "species": "catinga",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "Mart.",
+        "family": "Arecaceae",
+        "genus": "Euterpe",
+        "species": "edulis",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "Mart.",
+        "family": "Arecaceae",
+        "genus": "Euterpe",
+        "species": "oleracea",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "Mart.",
+        "family": "Arecaceae",
+        "genus": "Euterpe",
+        "species": "precatoria",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "(Mart.) A.J.Hend.",
+        "family": "Arecaceae",
+        "genus": "Euterpe",
+        "species": "precatoria",
+        "InfraRank": "var.",
+        "InfraTaxon": "longivaginata",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "Mart.",
+        "family": "Arecaceae",
+        "genus": "Hyospathe",
+        "species": "elegans",
+        "synomym": false
+    },
+    {
+        "family": "Arecaceae",
+        "genus": "Hyospathe",
+        "species": "elegans",
+        "InfraRank": "subsp.",
+        "InfraTaxon": "elegans",
+        "synomym": "No opinion"
+    },
+    {
+        "taxonAuthor": "A.J.Hend.",
+        "family": "Arecaceae",
+        "genus": "Hyospathe",
+        "species": "frontinensis",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "Burret",
+        "family": "Arecaceae",
+        "genus": "Hyospathe",
+        "species": "macrorhachis",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "A.J.Hend.",
+        "family": "Arecaceae",
+        "genus": "Hyospathe",
+        "species": "peruviana",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "Burret",
+        "family": "Arecaceae",
+        "genus": "Hyospathe",
+        "species": "pittieri",
+        "synomym": true
+    },
+    {
+        "taxonAuthor": "Dammer ex Burret",
+        "family": "Arecaceae",
+        "genus": "Hyospathe",
+        "species": "wendlandiana",
+        "synomym": true
+    },
+    {
+        "taxonAuthor": "Dammer",
+        "family": "Arecaceae",
+        "genus": "Neonicholsonia",
+        "species": "watsonii",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "Mart.",
+        "family": "Arecaceae",
+        "genus": "Oenocarpus",
+        "species": "bacaba",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "F.Kahn",
+        "family": "Arecaceae",
+        "genus": "Oenocarpus",
+        "species": "balickii",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "Mart.",
+        "family": "Arecaceae",
+        "genus": "Oenocarpus",
+        "species": "bataua",
+        "synomym": false
+    },
+    {
+        "family": "Arecaceae",
+        "genus": "Oenocarpus",
+        "species": "bataua",
+        "InfraRank": "var.",
+        "InfraTaxon": "bataua",
+        "synomym": true
+    },
+    {
+        "taxonAuthor": "Mart.",
+        "family": "Arecaceae",
+        "genus": "Oenocarpus",
+        "species": "distichus",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "H.Karst.",
+        "family": "Arecaceae",
+        "genus": "Oenocarpus",
+        "species": "mapora",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "Mart.",
+        "family": "Arecaceae",
+        "genus": "Oenocarpus",
+        "species": "minor",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "R.Bernal, Galeano & A.J.Hend.",
+        "family": "Arecaceae",
+        "genus": "Oenocarpus",
+        "species": "simplex",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "(Willd.) H.E.Moore",
+        "family": "Arecaceae",
+        "genus": "Prestoea",
+        "species": "acuminata",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "(Burret) A.J.Hend. & Galeano",
+        "family": "Arecaceae",
+        "genus": "Prestoea",
+        "species": "acuminata",
+        "InfraRank": "var.",
+        "InfraTaxon": "dasystachys",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "(Graham) A.J.Hend. & Galeano",
+        "family": "Arecaceae",
+        "genus": "Prestoea",
+        "species": "acuminata",
+        "InfraRank": "var.",
+        "InfraTaxon": "montana",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "(W.Bull) Hook.f.",
+        "family": "Arecaceae",
+        "genus": "Prestoea",
+        "species": "carderi",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "(H.Wendl. ex Burret) H.E.Moore",
+        "family": "Arecaceae",
+        "genus": "Prestoea",
+        "species": "decurrens",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "(Ruiz & Pav.) H.E.Moore",
+        "family": "Arecaceae",
+        "genus": "Prestoea",
+        "species": "ensiformis",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "(H.E.Moore) A.J.Hend. & Galeano",
+        "family": "Arecaceae",
+        "genus": "Prestoea",
+        "species": "longipetiolata",
+        "InfraRank": "var.",
+        "InfraTaxon": "cuatrecasasii",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "H.E.Moore",
+        "family": "Arecaceae",
+        "genus": "Prestoea",
+        "species": "pubens",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "(de Nevers & A.J.Hend.) A.J.Hend. & Galeano",
+        "family": "Arecaceae",
+        "genus": "Prestoea",
+        "species": "pubens",
+        "InfraRank": "var.",
+        "InfraTaxon": "semispicata",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "(Burret) H.E.Moore",
+        "family": "Arecaceae",
+        "genus": "Prestoea",
+        "species": "schultzeana",
+        "synomym": false
+    },
+    {
+        "taxonAuthor": "(Dammer) H.E.Moore",
+        "family": "Arecaceae",
+        "genus": "Prestoea",
+        "species": "tenuiramosa",
+        "synomym": false
+    }
+]

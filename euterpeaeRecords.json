@@ -1,0 +1,53 @@
+[
+    {
+        "country": "Dominica",        
+        "locality": "Ridge overlooking Salisbury nr. end of rd. to Jean",       
+        "colDate": ISODate("1968-13-05"),
+        "collectors": ["Read","Ernst"],
+        "colNumber":"2005",
+        "herbaria":"US",
+        "taxonId": [],
+        "publicationId":"publicationId"              
+    },
+    {
+        "country":"Dominica",
+        "locality":"5 mi from Pont Cassé on rd. to Rosalie",
+        "colDate": ISODate("1964-22-07"),
+        "collectors":["Wilbur","et al."],
+        "colNumber":"7842",
+        "herbaria":["NY","US"],
+        "taxonId":[],
+        "publicationId":"publicationId"
+    },
+    {
+        "country":"Grenada",
+        "locality":"Grand Etang",
+        "colDate":ISODate("1948-03-12"),
+        "collectors":"Bailey",
+        "colNumber":"434",
+        "herbaria":"BH",
+    },
+    {
+        "country":"Tobago",
+        "locality":"Menna",
+        "colDate":ISODate("1914-03-23"),
+        "collectors":"Broadway",
+        "colNumber":"4745",
+        "herbaria":["MO","NY","US"]
+    },
+    {
+        "country":"Tobago",
+        "colDate":ISODate("1914-03-23"),
+        "collectors":"Broadway",
+        "colNumber":"7087",
+        "herbaria":"TRIN"        
+    },
+    {
+        "country":"Tobago",
+        "locality":"summit of Pigeon Hill",
+        "colDate":ISODate("1925-10-23"),
+        "collectors":["W.G.F.","Row"],
+        "colNumber":"1138a",
+        "herbaria":"TRIN"
+    }
+]

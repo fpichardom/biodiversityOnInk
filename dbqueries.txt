@@ -1,0 +1,107 @@
+# Create an index for the taxa collection: this will disallow the entry of duplicate taxa below genus level
+
+db.taxa.createIndex(
+    {
+        genus:1,
+        species:1,
+        InfraRank:1,
+        InfraTaxon:1
+        },
+    {
+        unique:true,
+        sparse:true
+        } 
+)
+
+# Insert documents to taxa collection unordered
+
+## mongo shell
+db.taxa.insertMany([list of documents],{ordered:false})
+## pymongo
+db = client.euterpeaedb
+collection = db.taxa
+with open(jsonfile, 'r') as data:
+    taxa = json.load(data)
+    collection.insert_many(taxa, ordered=False)
+    
+# Rename a field in Mongodb
+
+## mongo shell
+
+db.taxa.updateMany(
+    {},
+    {$rename:{'Infra':'InfraTaxon'}}
+)
+
+# Taxa aggregation query no sep
+
+## mongo shell
+
+db.taxa.aggregate(
+    [
+        { 
+            $project: {
+                Genus:1,
+                Species:1,
+                InfraTaxon: { $ifNull: [ "$InfraTaxon", "" ] }
+            }
+        },
+        {
+            $project: {
+                fullname: { $concat: ['$Genus','$Species','$InfraTaxon'] }
+            }
+        }
+    ]
+    
+)
+
+
+# Search based on taxa aggregation
+var splist = ["Prestoeaacuminata","Prestoeaacuminatamontana"]
+var forloc = db.taxa.aggregate(
+    [
+        { 
+            $project: {
+                Genus:1,
+                Species:1,
+                InfraTaxon: { $ifNull: [ "$InfraTaxon", "" ] }
+            }
+        },
+        {
+            $project: {
+                fullname: { $concat: ['$Genus','$Species','$InfraTaxon'] },
+                include: "toInclude"
+            }
+        },
+        {
+            $match: {fullname: {$in: splist } }
+
+        },
+        {
+            $group: { "_id":"$include", taxonId: { $addToSet:"$_id"} }
+        },
+        {
+            $project: { _id: 0, taxonId:1}
+        }
+    ]
+    
+)
+
+# Get last inserted _id
+## mongo shell
+db.record.find({},{ _id: 1}).sort({$natural:-1}).limit(1)
+
+
+# Pipeline to insert a complete valid record
+
+## Generate a list of a record in json to insert new and txt for locality query
+
+## Insert new taxa in json best if show new records
+
+## Insert biblio publications
+
+## Insert record information
+
+## Update record with taxonomy information
+
+## Update record with publication information

@@ -241,5 +241,15 @@
         "genus": "Prestoea",
         "species": "tenuiramosa",
         "synomym": false
+    },
+    {
+        "taxonAuthor": "(Griseb. & H.Wendl.) A.J.Hend.",
+        "family": "Arecaceae",
+        "genus": "Oenocarpus",
+        "species": "bataua",
+        "InfraTaxon":"oligocarpus",
+        "InfraRank":"var.",
+        "synomym": false
     }
+
 ]

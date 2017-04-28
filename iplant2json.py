@@ -14,8 +14,8 @@ with open(sys.argv[1],'r') as csvfile,open(sys.argv[2],'w') as output:
         'Name_matched_accepted_family':'family',
         'Genus_matched':'genus',
         'Specific_epithet_matched':'species',
-        'Infraspecific_rank':'InfraRank',
-        'Infraspecific_epithet_matched':'InfraTaxon',
+        'Infraspecific_rank':'infraRank',
+        'Infraspecific_epithet_matched':'infraTaxon',
 	    'Name_matched_author':'taxonAuthor',
         'Taxonomic_status':'synomym'
     }

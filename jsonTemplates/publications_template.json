@@ -1,0 +1,41 @@
+[
+    {
+        "documentType":"(collection, publication)",
+        "recordType":"(specimen, species list, species observation)",
+        "ENTRYTYPE":" biblatex type (e.g. article,book,incollection)",
+        "ID":"biblatex key(best if generated before entry, format: lastname:year:first8title"
+        "title":"Publication Title",
+        "volume":"Article journal volume",
+        "number":"issue number",
+        "journaltitle":"full journal Name",
+        "shortjournal":"Journal abbreviation",
+        "author":["lastName1, firstName1 secondName1","lastName2, firstName2 secondName2"],
+        "date":ISODate("yyyy-mm-dd"),
+        "pages":"pages",
+        "doi":"publication doi",
+        "isbn":"publication isbn",
+        "publisher":"publication publisher",
+        "url":"webpage url",
+        "urldate":"url date accessed",
+        "edition":"publication edition",
+        "chapter":"book chapter",
+        "booktitle":"main book title (incollection)",
+        "editor":"editors (incollection)"
+    }
+]
+
+
+
+@article{cuenca2008,
+  title = {A dated phylogeny of the palm tribe {{Chamaedoreeae}} supports {{Eocene}} dispersal between {{Africa}}, {{North}} and {{South America}}},
+  volume = {46},
+  doi = {10.1016/j.ympev.2007.10.010},
+  number = {2},
+  journaltitle = {Molecular Phylogenetics and Evolution},
+  shortjournal = {Mol. Phylogenet. Evol.},
+  author = {Cuenca, Argelia and Asmussen-Lange, Conny B. and Borchsenius, Finn},
+  date = {2008},
+  pages = {760--775}
+}
+
+

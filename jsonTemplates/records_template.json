@@ -1,0 +1,29 @@
+[
+    {
+        "type":"Feature ( a feature as in geojson standard)",
+        "properties": {
+            "country": "country",
+            "countryCode": "standardized country code",
+            "province": "main country division",
+            "geoPlace": ["geographic entities (e.g. mountain range, lake, river, etc."],
+            "locality": "locality description",
+            "habitat": ["habitat","..."],
+            "associatedSpecies": ["associated species","..."],
+            "minElevation": 50,
+            "maxElevation": 60,
+            "elevationUnit":"(m,ft)",
+            "startDateTime": ISODate("2010-07-24"),
+            "endDateTime": ISODate("2010-07-28"),
+            "collectors": ["lastName1, firstName1","..."],
+            "colNumber":"collectors number, normally refers to first collector",
+            "herbaria":["herbaria where specimens are deposited","..."],
+            "geometrySource":"georeferenced or original or original-transformed"
+        },
+        "geometry": {
+            "type": "normally Point, others:( LineString,Polygon,MultiPoint,MultiLineString,MultiPolygon,GeometryCollection)",
+            "coordinates":["lon","lat"]        
+        },        
+        "taxonId": [],
+        "publicationId":"publicationId"              
+    },
+]

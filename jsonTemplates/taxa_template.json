@@ -1,0 +1,21 @@
+[
+    {
+        "taxonomy":{
+            "family": "family",
+            "genus": "genus",
+            "species": "species",
+            "spAuthor":"species author",
+            "subspecies":"subspecies",
+            "subspAuthor":"subspecies author",
+            "variety":"variety",
+            "varAuthor":"variety author",
+            "synonym":"true,false",
+            "synof":"id of synonym taxa"
+        },
+        "statusBiogeo": {
+            "biogeoStatusLoc": "locality for the biogeographic status",
+            "biogeoStatus": "(e=endemic,n=native,i=introduced"
+            },
+        "growthForm": "growth form"        
+    }
+]

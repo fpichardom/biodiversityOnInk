@@ -2,10 +2,15 @@
 
 import csv
 import json
-import sys
-print(sys.argv[1:])
+#import sys
+#print(sys.argv[1:])
 #file = input(file: )
-with open(sys.argv[1],'r') as csvfile,open(sys.argv[2],'w') as output:
+input_file = input("Input file: ")
+output_json = input("Output json file: ")
+output_splist = input("Output species list: ")
+
+with open(input_file,'r') as csvfile, open(output_json + '.json','w') as out_json, \
+    open(output_splist + '.txt','w') as out_splist:
     reader = csv.DictReader(csvfile,delimiter='\t')
     title = reader.fieldnames
     #lista = list(reader)    
@@ -17,10 +22,12 @@ with open(sys.argv[1],'r') as csvfile,open(sys.argv[2],'w') as output:
         'Infraspecific_rank':'infraRank',
         'Infraspecific_epithet_matched':'infraTaxon',
 	    'Name_matched_author':'taxonAuthor',
-        'Taxonomic_status':'synomym'
+        'Taxonomic_status':'synomym',
+        'Source':'source'
     }
     fields = fieldMap.keys()
     taxa =[]
+    out_json.write('[\n')
     for row in reader:
         taxonomy ={}
         for field,value in row.items():
@@ -34,7 +41,13 @@ with open(sys.argv[1],'r') as csvfile,open(sys.argv[2],'w') as output:
                         taxonomy[fieldMap[field]] = True
                     else:
                         continue
-                            
-        taxa.append(taxonomy)
+                if field == 'Source':
+                    taxonomy[fieldMap[field]] = value.split()
+        fullname = [taxonomy['genus'],taxonomy['species'],taxonomy.get('infraTaxon',"")]
+        out_splist.write("".join(fullname) + '\n')
+        out_json.write(json.dumps(taxonomy,ensure_ascii=False)+',\n')
+    out_json.write(']')                        
+        #taxa.append(taxonomy)
     #json.dump(taxa,output)
-    output.write(json.dumps(taxa, sort_keys=False, indent=4, separators=(',', ': '),ensure_ascii=False))
+    #output.write(json.dumps(taxa, sort_keys=False, indent=4, \
+     #                       separators=(',', ': '),ensure_ascii=False))

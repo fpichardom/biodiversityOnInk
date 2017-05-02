@@ -4,13 +4,11 @@
             "family": "family",
             "genus": "genus",
             "species": "species",
-            "spAuthor":"species author",
-            "subspecies":"subspecies",
-            "subspAuthor":"subspecies author",
-            "variety":"variety",
-            "varAuthor":"variety author",
+            "taxonAuthor":"species author",
+            "infraRank":"subspecies",
+            "infraTaxon":"subspecies author",
             "synonym":"true,false",
-            "synof":"id of synonym taxa"
+            "synOf":"id of synonym taxa"
         },
         "statusBiogeo": {
             "biogeoStatusLoc": "locality for the biogeographic status",

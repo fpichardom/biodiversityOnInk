@@ -82,7 +82,7 @@ with open(jsonfile, 'r') as data:
             record['startDateTime'] = datetime.datetime.strptime(record['startDateTime'],"%Y-%m-%d")
         if record.get('endDateTime', 0):
             record['endDateTime'] = datetime.datetime.strptime(record['startDateTime'],"%Y-%m-%d")
-        collection.insert_one(record)
+        #collection.insert_one(record)
 
 
 

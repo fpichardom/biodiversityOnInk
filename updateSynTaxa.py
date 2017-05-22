@@ -59,10 +59,35 @@ input_file = check_file(input("Input file: "))
 
 with open(input_file,'r') as csvfile:
     reader = csv.DictReader(csvfile,delimiter='\t')
-    taxa= []
+    #taxai= []
     for row in reader:
         if row['Taxonomic_status'] == 'Synonym':
-            taxonomy ={}
-            taxonomy['syn_fullname'] = clean_name(row['Name_submitted'])
-            taxonomy['ac_fullname'] = clean_name(row['Accepted_name']) 
-            taxa.append(taxonomy)
+            syn = id_search(clean_name(row['Name_submitted']))
+            acc = id_search(clean_name(row['Accepted_name']))
+            taxa.update_one({"_id":syn},{"$set":{"synOf": acc}})
+            #taxonomy =[syn,acc]
+            #taxai.append(taxonomy)
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            

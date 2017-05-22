@@ -7,31 +7,46 @@ Created on Mon May 22 14:52:09 2017
 """
 
 import csv
+import os.path
+import sys
+
+# Function Definition Start
+def check_file(file):
+    exists = True
+    newfile = file
+    while exists:
+        if os.path.isfile(newfile):
+            exists = False
+        else:
+            again = input('File %s does not exists\nDo yo want to enter a new file (y/n):'%newfile)
+            if again in ['y','Y','yes','Yes']:
+                newfile = input('Enter a new file name:' )
+            else:                
+                sys.exit('Program closed')
+                
+                
+    return newfile
 
 
 def clean_name(taxon):
-    if 2 <= len(taxon.split()) <= 3:
-        return taxon.replace(' ','')
-    elif len(taxon.split()) == 4:
-        
-        
-    
-    
-    
-    
-input_file = input("Input file: ")
+    for i in ['subsp.','subsp','var.','var']:
+        if i in taxon.split():
+            taxonlist = taxon.split()
+            taxonlist.remove(i)
+            return "".join(taxonlist)
+    return "".join(taxon.split())
+# Function Definition End
+
+
+
+input_file = check_file(input("Input file: "))
 
 with open(input_file,'r') as csvfile:
     reader = csv.DictReader(csvfile,delimiter='\t')
-    fieldMap = {
-        'Name_submitted':'syn_fullname',
-        'Accepted_name':'ac_fullname',
-    }
-    fields = fieldMap.keys()
+    taxa= []
     for row in reader:
-        if row['Taxonomic_status'] == Synonym
-        taxonomy ={}
-        taxonomy['syn_fullname'] = 
-        for field,value in row.items():
-            #print(field,value)
-            if field in fields and not value == "":
+        if row['Taxonomic_status'] == 'Synonym':
+            taxonomy ={}
+            taxonomy['syn_fullname'] = clean_name(row['Name_submitted'])
+            taxonomy['ac_fullname'] = clean_name(row['Accepted_name']) 
+            taxa.append(taxonomy)

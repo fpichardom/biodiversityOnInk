@@ -6,6 +6,8 @@ Insert records into mongodb
 import json
 from pymongo import MongoClient
 import datetime
+import os.path
+import sys
 
 def fixcoord(dictio):
     """
@@ -30,7 +32,8 @@ def checkfloat(val):
     Check if a string can be converted into float
     """
     try:
-        return float(val)
+        float(val)
+        return True
     except ValueError:
         return False
 
@@ -44,7 +47,7 @@ def find_pubid(ukey,database):
             keep = False               
     return query['_id']
 
-def find_taxonid(file):    
+def find_taxonid(file,database):    
     with open(file,'r') as spfile :
         lista = spfile.read().split('\n')
         query = database['fullname_view'].aggregate( [
@@ -56,34 +59,77 @@ def find_taxonid(file):
         taxonId = item['taxonId']
     return taxonId
 
+def clean_date(date):
+    parts = date.split('/')
+    if len(parts) == 3:
+        year = int(parts[0])
+        month = int(parts[1])
+        day = int(parts[2])
+    return datetime.datetime(year,month,day)
+        
+def check_file(file):
+    exists = True
+    newfile = file
+    while exists:
+        if os.path.isfile(newfile):
+            exists = False
+        else:
+            again = input('File %s does not exists\nDo yo want to enter a new file (y/n):'%newfile)
+            if again in ['y','Y','yes','Yes']:
+                newfile = input('Enter a new file name:' )
+            else:                
+                sys.exit('Program closed')
+                
+                
+    return newfile
+                
 
-jsonfile = input('Enter json: ')
-db = input('Enter database name: ')
-col = input('Enter collection name: ')
-pubid = input('Enter publication key: ')
-taxonfile = input('Enter taxon file: ')
+    
+# Enter external files  
+
+jsonfile = check_file(input('Enter json: '))
+taxonfile = check_file(input('Enter taxon file: '))
+
+# Database connection
+
 client = MongoClient('localhost', 27017)
-database = client[db]
-collection = database[col]
+database = client[input('Enter database name: ')]
+collection = database[input('Enter collection name: ')]
 
+# General info for all records
+
+cataloger = input('Enter cataloger name: ') 
+pubid = find_pubid(input('Enter publication key: '),database)
+taxonid = find_taxonid(taxonfile,database)
+utcnow = datetime.datetime.utcnow()
+print('Starting entry process')
+
+
+# Load data and run program
 
 with open(jsonfile, 'r') as data:
     records = json.load(data)
-    #pubid = find_pubid(pubid)
+    count = 0
     for record in records:
-        record['publicationId'] = find_pubid(pubid,database)
-        record['TaxonId'] = find_taxonid(taxonfile)
-        if record.get('geometry', 0):
-            if checkfloat(record['geometry']['coordinates'][0]):
-                continue
-            else:
-                record['geometry']['coordinates'] = fixcoord(record)
-        if record.get('startDateTime', 0):
-            record['startDateTime'] = datetime.datetime.strptime(record['startDateTime'],"%Y-%m-%d")
-        if record.get('endDateTime', 0):
-            record['endDateTime'] = datetime.datetime.strptime(record['startDateTime'],"%Y-%m-%d")
-        #collection.insert_one(record)
-
+        try:
+            record['catalogDate'] = utcnow
+            record['cataloger'] = cataloger
+            record['publicationId'] = pubid
+            record['TaxonId'] = taxonid
+            if record.get('geometry', 0):
+                if not checkfloat(record['geometry']['coordinates'][0]):
+                    record['geometry']['coordinates'] = fixcoord(record)
+                    if record.get('startDateTime', 0):
+                        record['startDateTime'] = clean_date(record['startDateTime'])
+                if record.get('endDateTime', 0):
+                    record['endDateTime'] = clean_date(record['startDateTime'])
+            count += 1
+            print('Record %s proccessed'%count)
+            #collection.insert_one(record) # records inserted as processed
+        except:
+            print('Error found no record inserted')
+    collection.insert_many(records) # records inserted at the end of the process
+    print('All records successfully uploaded')
 
 
 

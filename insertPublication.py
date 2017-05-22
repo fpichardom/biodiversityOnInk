@@ -4,10 +4,41 @@ from pymongo import MongoClient
 import json
 import datetime
 import pprint
+import os.path
+import sys
+
+# Start functions definitions
+
+def check_file(file):
+    exists = True
+    newfile = file
+    while exists:
+        if os.path.isfile(newfile):
+            exists = False
+        else:
+            again = input('File %s does not exists\nDo yo want to enter a new file (y/n):'%newfile)
+            if again in ['y','Y','yes','Yes']:
+                newfile = input('Enter a new file name:' )
+            else:                
+                sys.exit('Program closed')
+                
+                
+    return newfile
+
+# End function definitions
+
+#Load json
+
+jsonfile = check_file(input('Enter json: '))
+
+# Database connection
+
 client = MongoClient('localhost', 27017)
-db = client.euterpeaedb
-collection = db.publications
-jsonfile = input('Enter json: ')
+database = client[input('Enter database name: ')]
+collection = database[input('Enter collection name: ')]
+
+
+# General script
 
 
 with open(jsonfile, 'r') as data:

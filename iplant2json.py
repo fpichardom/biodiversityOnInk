@@ -41,7 +41,14 @@ def check_file(file):
                 sys.exit('Program closed')
                 
                 
-    return newfile   
+    return newfile
+'''
+def check_first_write(taxonomy,first):
+    if first:
+        out_json.write(json.dumps(taxonomy,ensure_ascii=False))
+    else:
+        out_json.write(',\n'+ json.dumps(taxonomy,ensure_ascii=False))
+'''
 
 input_file = check_file(input("Input file: "))
 output_json = input("Output json file: ")
@@ -66,6 +73,7 @@ with open(input_file,'r') as csvfile, open(output_json + '.json','w') as out_jso
     fields = fieldMap.keys()
     taxa =[]
     out_json.write('[\n')
+    first = True
     for row in reader:       
         if row['Taxonomic_status'] == 'Synonym':
             taxonomy ={}
@@ -74,7 +82,13 @@ with open(input_file,'r') as csvfile, open(output_json + '.json','w') as out_jso
             taxonomy['taxonAuthor'] = row['Accepted_name_author']
             taxonomy['synonym'] = False
             taxonomy['source'] = clean_source(row['Source'])
-            out_json.write(json.dumps(taxonomy,ensure_ascii=False)+',\n')
+            if first:
+                out_json.write(json.dumps(taxonomy,ensure_ascii=False))
+                first = False
+            else:
+                out_json.write(',\n'+ json.dumps(taxonomy,ensure_ascii=False))
+            
+            #out_json.write(json.dumps(taxonomy,ensure_ascii=False)+',\n')
         taxonomy ={}
         for field,value in row.items():
             #print(field,value)
@@ -86,8 +100,13 @@ with open(input_file,'r') as csvfile, open(output_json + '.json','w') as out_jso
                     taxonomy[fieldMap[field]] = clean_source(value)
         fullname = [taxonomy['genus'],taxonomy['species'],taxonomy.get('infraTaxon',"")]
         out_splist.write("".join(fullname) + '\n')
-        out_json.write(json.dumps(taxonomy,ensure_ascii=False)+',\n')
-    out_json.write(']')                        
+        if first:
+            out_json.write(json.dumps(taxonomy,ensure_ascii=False))
+            first = False
+        else:
+            out_json.write(',\n'+ json.dumps(taxonomy,ensure_ascii=False))
+        #out_json.write(json.dumps(taxonomy,ensure_ascii=False)+',\n')
+    out_json.write('\n]')                        
         #taxa.append(taxonomy)
     #json.dump(taxa,output)
     #output.write(json.dumps(taxa, sort_keys=False, indent=4, \

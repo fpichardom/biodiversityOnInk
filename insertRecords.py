@@ -65,7 +65,7 @@ def clean_date(date):
         year = int(parts[0])
         month = int(parts[1])
         day = int(parts[2])
-    return datetime.datetime(year,month,day)
+    return datetime.datetime(year,month,day,12,0,0)
         
 def check_file(file):
     exists = True

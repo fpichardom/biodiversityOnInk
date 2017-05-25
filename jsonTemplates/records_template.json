@@ -1,29 +1,30 @@
 [
     {
-        "type":"Feature ( a feature as in geojson standard)",
-        "properties": {
-            "country": "country",
-            "countryCode": "standardized country code",
-            "province": "main country division",
-            "geoPlace": ["geographic entities (e.g. mountain range, lake, river, etc."],
-            "locality": "locality description",
-            "habitat": ["habitat","..."],
-            "associatedSpecies": ["associated species","..."],
-            "minElevation": 50,
-            "maxElevation": 60,
-            "elevationUnit":"(m,ft)",
-            "startDateTime": "2010-07-24",
-            "endDateTime": "2010-07-28",
-            "collectors": ["lastName1, firstName1","..."],
-            "colNumber":"collectors number, normally refers to first collector",
-            "herbaria":["herbaria where specimens are deposited","..."],
-            "geometrySource":"georeferenced or original or original-transformed"
-        },
+        "country": "country name",
+        "countryCode": "standardized two letter country code",
+        "stateProvince": "main country division level name",
+        "county": "county level division name",
+        "geoPlace": ["geographic entities (e.g. mountain range, lake, river, etc."],
+        "locality": "locality description",
+        "habitat": ["habitat","..."],
+        "associatedTaxa": ["associated species","..."],
+        "elevationInMeters": [50,60],
+        "eventDate": ["2010-07-24","2010-07-28"],
+        "completeDate":"true of false",
+        "recordedBy": ["lastName1, firstName1","..."],
+        "recordNumber":"collectors number, normally refers to first collector",
+        "ownerInstitutionCode":["herbaria where specimens are deposited","..."],
+        "basisOfRecord":"(specimen, species list, species observation)",
+        "description":"if specimen possible specimen description",
+        "georeferenceSources": "e.g Geolocate",
+        "georeferenceProtocol": "protocol followed for georeferencing"
+        "taxonId": ["taxonId","..."],
+        "associatedReferences":"publicationId",
+        "geodeticDatum": "e.g WGS84",
         "geometry": {
             "type": "normally Point, others:( LineString,Polygon,MultiPoint,MultiLineString,MultiPolygon,GeometryCollection)",
             "coordinates":["lon","lat"]        
-        },        
-        "taxonId": [],
-        "publicationId":"publicationId"              
-    },
+        }        
+                    
+    }
 ]

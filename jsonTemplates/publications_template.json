@@ -1,7 +1,7 @@
 [
     {
         "documentType":"(collection, publication)",
-        "recordType":"(specimen, species list, species observation)",
+        
         "ENTRYTYPE":" biblatex type (e.g. article,book,incollection)",
         "ID":"biblatex key(best if generated before entry, format: lastname:year:first8title",
         "title":"Publication Title",

@@ -1,19 +1,19 @@
 [
     {
-        "taxonomy":{
-            "family": "family",
-            "genus": "genus",
-            "species": "species",
-            "taxonAuthor":"species author",
-            "infraRank":"subspecies",
-            "infraTaxon":"subspecies author",
-            "synonym":"true,false",
-            "synOf":"id of synonym taxa"
-        },
+        "family": "family",
+        "genus": "genus",
+        "specificEpithet": "species",
+        "scientificNameAuthorship":"species author",
+        "taxonRank":"e.g species,subspecies,varietas",
+        "infraspecificEpithet":"subspecies author",
+        "taxonomicStatus":"e.g accepted, synonym, invalid",
+        "acceptedNameUsage":"id of the accepted taxa",
+        "nameAccordingTo":"source of name status",
+        "growthForm": "growth form",
         "statusBiogeo": {
             "biogeoStatusLoc": "locality for the biogeographic status",
-            "biogeoStatus": "(e=endemic,n=native,i=introduced"
+            "biogeoStatus": "(endemic,native,introduced"
             },
-        "growthForm": "growth form"        
+                
     }
 ]

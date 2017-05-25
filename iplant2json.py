@@ -4,6 +4,7 @@ import csv
 import json
 import sys
 import os.path
+import os
 #print(sys.argv[1:])
 #file = input(file: )
 
@@ -49,6 +50,9 @@ def check_first_write(taxonomy,first):
     else:
         out_json.write(',\n'+ json.dumps(taxonomy,ensure_ascii=False))
 '''
+
+
+os.chdir(input("Enter files path: "))
 
 input_file = check_file(input("Input file: "))
 output_json = input("Output json file: ")

@@ -8,6 +8,7 @@ from pymongo import MongoClient
 import datetime
 import os.path
 import sys
+import os
 
 def fixcoord(dictio):
     """
@@ -84,7 +85,8 @@ def check_file(file):
     return newfile
                 
 
-    
+os.chdir(input("Enter files path: "))
+
 # Enter external files  
 
 jsonfile = check_file(input('Enter json: '))
@@ -119,10 +121,10 @@ with open(jsonfile, 'r') as data:
             if record.get('geometry', 0):
                 if not checkfloat(record['geometry']['coordinates'][0]):
                     record['geometry']['coordinates'] = fixcoord(record)
-                    if record.get('startDateTime', 0):
-                        record['startDateTime'] = clean_date(record['startDateTime'])
-                if record.get('endDateTime', 0):
-                    record['endDateTime'] = clean_date(record['startDateTime'])
+            if record.get('startDateTime', 0):
+                record['startDateTime'] = clean_date(record['startDateTime'])
+            if record.get('endDateTime', 0):
+                record['endDateTime'] = clean_date(record['endDateTime'])
             count += 1
             print('Record %s proccessed'%count)
             #collection.insert_one(record) # records inserted as processed

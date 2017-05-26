@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-
+'''
+Provides code to parse a csv file obtained from the taxonomic name resolution system
+'''
 # import modules stage
 
 import csv
@@ -9,11 +11,17 @@ from pymongo import MongoClient
 
 
 def connect_db(database, collection, client=MongoClient('localhost', 27017)):
-    db = client[database]
-    col = db[collection]
+    '''
+    Manage connection to the mongo server and database
+    '''
+    dbase = client[database]
+    col = dbase[collection]
     return col
 
 def clean_fullname(value):
+    '''
+    Parse a string with the fullname of a taxon into its separate components
+    '''
     parse = value.split()
     if len(parse) == 2:
         return {'genus':parse[0], 'specificEpithet':parse[1]}
@@ -22,6 +30,7 @@ def clean_fullname(value):
         'verbatimTaxonRank':parse[2], 'infraspecificEpithet':parse[3]}
     else:
         return {'genus':parse[0]}
+# alternative parsing method
 '''
     for i in ['subsp.','subsp','var.','var']:
         if i in p:
@@ -30,8 +39,10 @@ def clean_fullname(value):
     return {'genus':p[0],'specificEpithet':p[1]}
 '''
 
-
 def insert_taxa(taxon, collection, cataloger='Pichardo-Marcano, Fritz'):
+    '''
+    Insert a new taxon to the mongodb database
+    '''
     try:
         taxon['catalogDate'] = datetime.datetime.utcnow()
         taxon['cataloger'] = cataloger
@@ -48,6 +59,9 @@ def insert_taxa(taxon, collection, cataloger='Pichardo-Marcano, Fritz'):
 
 
 def run_body(input_file, collection, field_map, output_splist='splist.txt'):
+    '''
+    Main program for parsing and inserting taxon data into the mongodb database
+    '''
     with open(input_file, 'r') as csvfile, open(output_splist + '.txt', 'w') as splist:
         general_fields = field_map.keys()
         reader = csv.DictReader(csvfile, delimiter='\t')

@@ -8,23 +8,24 @@
         "locality": "locality description",
         "habitat": ["habitat","..."],
         "associatedTaxa": ["associated species","..."],
-        "elevationInMeters": [50,60],
-        "eventDate": ["2010-07-24","2010-07-28"],
-        "completeDate":"true of false",
-        "recordedBy": ["lastName1, firstName1","..."],
+        "minimumElevationInMeters": 50,
+        "maximumElevationInMeters": 60,
+        "startEventDate": "2010-07-24",
+        "endEventDate": "2010-07-28",
+        "isCompleteDate":"true or false",
+        "recordedBy": ["lastName1, firstName1 SecondName1","..."],
         "recordNumber":"collectors number, normally refers to first collector",
         "ownerInstitutionCode":["herbaria where specimens are deposited","..."],
-        "basisOfRecord":"(specimen, species list, species observation)",
-        "description":"if specimen possible specimen description",
+        "basisOfRecord":"e.g. specimen, species list, observation)",
+        "description":"specimen description",
         "georeferenceSources": "e.g Geolocate",
-        "georeferenceProtocol": "protocol followed for georeferencing"
+        "georeferenceProtocol": "protocol followed for georeferencing",
         "taxonId": ["taxonId","..."],
-        "associatedReferences":"publicationId",
+        "publicationId":"publicationId",
         "geodeticDatum": "e.g WGS84",
         "geometry": {
             "type": "normally Point, others:( LineString,Polygon,MultiPoint,MultiLineString,MultiPolygon,GeometryCollection)",
-            "coordinates":["lon","lat"]        
-        }        
-                    
+            "coordinates":["lon","lat"]
+        }                    
     }
 ]

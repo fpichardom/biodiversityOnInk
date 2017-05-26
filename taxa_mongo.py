@@ -21,7 +21,7 @@ def connect_db(database, collection, client=MongoClient('localhost', 27017)):
 
 ## Accessory functions
 
-def fullname_insert(value):
+def fullname_parse(value):
     '''
     Parse a string with the fullname of a taxon into its separate components
     '''
@@ -33,16 +33,6 @@ def fullname_insert(value):
         'verbatimTaxonRank':parse[2], 'infraspecificEpithet':parse[3]}
     else:
         return {'genus':parse[0]}
-
-def fullname_update(taxon):
-    taxonlist = taxon.split()       
-    for i in ['subsp.','subsp','var.','var']:
-        if i in taxonlist:            
-            taxonlist.remove(i)
-            return "".join(taxonlist)
-    return "".join(taxonlist)
-
-
 
 def insert_taxa(taxon, collection, cataloger='Pichardo-Marcano, Fritz'):
     '''
@@ -62,13 +52,24 @@ def insert_taxa(taxon, collection, cataloger='Pichardo-Marcano, Fritz'):
 
 
 def id_search(fullname, collection):
-    query = collection.find_one({ "fullname": fullname },{"_id":1})
+    '''
+    Search for the id based on a concatenated fullname
+    '''
+    query = collection.find_one({"fullname": fullname}, {"_id":1})
     return query['_id']
 
+def update_synonym(synonym, accepted, update_collection, lookup_collection):
+    '''
+    Update synonyms
+    '''
+    syn = id_search(synonym, lookup_collection)
+    acc = id_search(accepted, lookup_collection)
+    update_collection.update_one({"_id":syn}, {"$set":{"acceptedNameUsage": acc}})
 
 ## Main taxa parse and insert
 
-def run_body(input_file, insert_collection, field_map, output_splist='splist.txt'):
+def run_body(input_file, insert_collection, lookup_collection, field_map,\
+output_splist='splist'):
     '''
     Main program for parsing and inserting taxon data into the mongodb database
     '''
@@ -76,6 +77,7 @@ def run_body(input_file, insert_collection, field_map, output_splist='splist.txt
         general_fields = field_map.keys()
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader:
+            acc = None
             if row['Taxonomic_status'] == 'Synonym':
                 taxonomy = {}
                 taxonomy['family'] = row['Accepted_name_family']
@@ -83,8 +85,10 @@ def run_body(input_file, insert_collection, field_map, output_splist='splist.txt
                 taxonomy['taxonRank'] = row['Accepted_name_rank']
                 taxonomy['nameAccordingTo'] = row['Source'].split(';')
                 taxonomy['taxonomicStatus'] = "accepted"
-                taxonomy.update(fullname_insert(row['Accepted_name']))
+                taxonomy.update(fullname_parse(row['Accepted_name']))
                 insert_taxa(taxonomy, insert_collection)
+                acc = "".join([taxonomy['genus'], taxonomy.get('specificEpithet', ""),\
+            taxonomy.get('infraspecificEpithet', "")])
             taxonomy = {}
             for field, value in row.items():
                 if field in general_fields and not value == "":
@@ -94,23 +98,12 @@ def run_body(input_file, insert_collection, field_map, output_splist='splist.txt
                     if field == 'Source':
                         taxonomy[field_map[field]] = value.split(';')
             insert_taxa(taxonomy, insert_collection)
-            fullname = "".join([taxonomy['genus'], taxonomy.get('specificEpithet', ""),\
+            syn = "".join([taxonomy['genus'], taxonomy.get('specificEpithet', ""),\
             taxonomy.get('infraspecificEpithet', "")])
-            splist.write(fullname + '\n')
+            splist.write(syn + '\n')
+            if acc:
+                update_synonym(syn, acc, insert_collection, lookup_collection)
 
-## Main parse and update synonyms
 
-
-def update_synonym(input_file):
-    with open(input_file,'r') as csvfile:
-    reader = csv.DictReader(csvfile,delimiter='\t')
-    #taxai= []
-    for row in reader:
-        if row['Taxonomic_status'] == 'Synonym':
-            syn = id_search(fullname_update(row['Name_matched']))
-            acc = id_search(fullname_update(row['Accepted_name']))
-            collection.update_one({"_id":syn},{"$set":{"acceptedNameUsage": acc}})
-            #taxonomy =[syn,acc]
-            #taxai.append(taxonomy)
 
 

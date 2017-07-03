@@ -1,29 +1,11 @@
 #!/usr/bin/env python
 
+#import statements
 import os.path
 import sys
 import os
 import taxa_mongo
-
-# Function declaration
-
-def check_file(file):
-    '''
-    Check if file exists in a specific directory
-    '''
-    exists = True
-    newfile = file
-    os.chdir(input("Enter files path: "))
-    while exists:
-        if os.path.isfile(newfile):
-            exists = False
-        else:
-            again = input('File %s does not exists\nDo yo want to enter a new file (y/n):'%newfile)
-            if again in ['y', 'Y', 'yes', 'Yes']:
-                newfile = input('Enter a new file name:')
-            else:
-                sys.exit('Program closed')
-    return newfile
+from general import check_file, connect_db
 
 # Constant declaration stage
 
@@ -50,8 +32,8 @@ FIELD_MAP = {
 
 # Database connection stage
 
-TAXACOL = taxa_mongo.connect_db(DBNAME, TAXACOLNAME)
-VIEW = taxa_mongo.connect_db(DBNAME, VIEWNAME)
+TAXACOL = connect_db(DBNAME, TAXACOLNAME)
+VIEW = connect_db(DBNAME, VIEWNAME)
 # Main program run stage
 
 taxa_mongo.run_body(I_FILE, TAXACOL, VIEW, FIELD_MAP)

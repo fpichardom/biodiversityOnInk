@@ -3,21 +3,13 @@
 Provides code to parse a csv file obtained from the taxonomic name resolution system
 '''
 # import modules stage
-
 import csv
 import datetime
 from pymongo import MongoClient
+
 # function declaration stage
 
-## Database connection
 
-def connect_db(database, collection, client=MongoClient('localhost', 27017)):
-    '''
-    Manage connection to the mongo server and database
-    '''
-    dbase = client[database]
-    col = dbase[collection]
-    return col
 
 ## Accessory functions
 
@@ -103,7 +95,3 @@ output_splist='splist'):
             splist.write(syn + '\n')
             if acc:
                 update_synonym(syn, acc, insert_collection, lookup_collection)
-
-
-
-

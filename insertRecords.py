@@ -10,33 +10,6 @@ import os.path
 import sys
 import os
 
-def fixcoord(dictio):
-    """
-    Parse strings formated in DM or DMS to DD
-    """
-    newcor =[]
-    for cor in dictio['geometry']['coordinates']:
-        parse = cor.split(' ')
-        if len(parse) == 3:
-            dd = float(parse[0]) + float(parse[1])/60
-            if parse[2] == 'S' or parse[2] == 'W':
-                dd *= -1
-        elif len(parse) == 4:
-            dd = float(parse[0]) + float(parse[1])/60 + float(parse[2])/(60*60)
-            if parse[3] == 'S' or parse[3] == 'W':
-                dd *= -1
-        newcor.append(dd)
-    return newcor
-
-def checkfloat(val):
-    """
-    Check if a string can be converted into float
-    """
-    try:
-        float(val)
-        return True
-    except ValueError:
-        return False
 
 def find_pubid(ukey,database):
     keep = True
@@ -119,8 +92,8 @@ with open(jsonfile, 'r') as data:
             record['publicationId'] = pubid
             record['TaxonId'] = taxonid
             if record.get('geometry', 0):
-                if not checkfloat(record['geometry']['coordinates'][0]):
-                    record['geometry']['coordinates'] = fixcoord(record)
+                if not general.checkfloat(record['geometry']['coordinates'][0]):
+                    record['geometry']['coordinates'] = general.fixcoord(record)
             if record.get('startDateTime', 0):
                 record['startDateTime'] = clean_date(record['startDateTime'])
             if record.get('endDateTime', 0):

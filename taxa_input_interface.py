@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 
 #import statements
-import os.path
-import sys
-import os
+
 import taxa_mongo
 from general import check_file, connect_db
 

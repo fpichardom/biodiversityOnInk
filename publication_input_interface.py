@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-from general import check_file,clean_date,connect_db
-
+import publications_mongo
+from general import check_file,connect_db
 
 # Constant definitions
 
@@ -13,3 +13,4 @@ JSONFILE = check_file(input('Enter json: '))
 
 # Database connection
 PUBCOL = connect_db(DBNAME,PUBCOLNAME)
+publications_mongo.pub_insert(JSONFILE,PUBCOL)

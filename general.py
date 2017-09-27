@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+import os.path
+import sys
+import os
+import datetime
+from pymongo import MongoClient
+
 def check_file(file):
     '''
     Check if file exists in a specific directory
@@ -38,3 +44,31 @@ def connect_db(database, collection, client=MongoClient('localhost', 27017)):
     dbase = client[database]
     col = dbase[collection]
     return col
+
+def fixcoord(dictio):
+    """
+    Parse strings formated in DM or DMS to DD
+    """
+    newcor =[]
+    for cor in dictio['geometry']['coordinates']:
+        parse = cor.split(' ')
+        if len(parse) == 3:
+            dd = float(parse[0]) + float(parse[1])/60
+            if parse[2] == 'S' or parse[2] == 'W':
+                dd *= -1
+        elif len(parse) == 4:
+            dd = float(parse[0]) + float(parse[1])/60 + float(parse[2])/(60*60)
+            if parse[3] == 'S' or parse[3] == 'W':
+                dd *= -1
+        newcor.append(dd)
+    return newcor
+
+def checkfloat(val):
+    """
+    Check if a string can be converted into float
+    """
+    try:
+        float(val)
+        return True
+    except ValueError:
+        return False

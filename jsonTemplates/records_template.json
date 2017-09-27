@@ -8,11 +8,16 @@
         "locality": "locality description",
         "habitat": ["habitat","..."],
         "associatedTaxa": ["associated species","..."],
-        "minimumElevationInMeters": 50,
-        "maximumElevationInMeters": 60,
-        "startEventDate": "2010-07-24",
-        "endEventDate": "2010-07-28",
-        "isCompleteDate":"true or false",
+        "elevation":{
+            "minimumElevationInMeters": 50,
+            "maximumElevationInMeters": 60
+        },
+        "date":{
+            "startEventDate": "2010-07-24",
+            "endEventDate": "2010-07-28",
+            "isCompleteDate":"true or false"
+        }
+        ,
         "recordedBy": ["lastName1, firstName1 SecondName1","..."],
         "recordNumber":"collectors number, normally refers to first collector",
         "ownerInstitutionCode":["herbaria where specimens are deposited","..."],
